@@ -2,25 +2,57 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+
+  --surface: #f7f9fc;
+  --surface-fg: #000000;
+
+  --input-bg: #f0f0f0;
+
+  /* Brand/UI Colors */
+  --primary: #2481cc;
+  --primary-fg: #ffffff;
+
+  --muted: #9ca3af;
+  --border: #e5e7eb;
+}
+
+.dark {
+  --background: #000000;
+  /* AMOLED Black */
+  --foreground: #ffffff;
+
+  --surface: #121212;
+  /* Nearly black for surface */
+  --surface-fg: #ffffff;
+
+  --input-bg: #1e1e1e;
+
+  --primary: #40a7e3;
+  /* Telegram Blue - brighter */
+  --primary-fg: #ffffff;
+
+  --muted: #6b7280;
+  --border: #333333;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface: var(--surface);
+  --color-surface-fg: var(--surface-fg);
+  --color-input-bg: var(--input-bg);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
