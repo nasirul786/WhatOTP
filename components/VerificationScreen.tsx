@@ -8,9 +8,11 @@ interface VerificationScreenProps {
     onVerifyBiometric: () => void;
     onVerifyPasscode: () => void;
     onRemoveAuth: () => void;
+    onDeleteAccount: () => Promise<void>;
     hasBiometric: boolean;
     hasPasscode: boolean;
     hasEmail: boolean;
+    isLoading: boolean;
     isDeleteLoading?: boolean;
 }
 
