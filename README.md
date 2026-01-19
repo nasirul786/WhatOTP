@@ -11,10 +11,12 @@
   - Scan QR codes to add accounts.
   - Export accounts via QR code or file to migrate to other apps.
 - **🌍 Multi-Language Support**:
+  Just add your language translations file into lib/locales with language_code.json file name and add its lottie file to the public/lotties/flags/language_code.json to add enw language.
   - 🇺🇸 English
   - 🇮🇳 Hindi (हिन्दी)
   - 🇧🇩 Bengali (বাংলা)
   - 🇮🇩 Indonesian (Bahasa Indonesia)
+  - And many more
 - **🎨 Modern UI**:
   - Beautiful dark/light mode support.
   - Smooth animations using Lottie and Framer Motion.
@@ -43,8 +45,8 @@
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/whatotp.git
-   cd whatotp
+   git clone https://github.com/nasirul786/WhatOTP.git
+   cd WhatOTP
    ```
 
 2. **Install dependencies**:
@@ -53,56 +55,17 @@
    ```
 
 3. **Environment Setup**:
-   Create a `.env.local` file in the root directory and configure the following variables:
-
-   ```env
-   # Database Configuration
-   DB_HOST=localhost
-   DB_USER=root
-   DB_PASSWORD=your_password
-   DB_NAME=telegram_2fa
-
-   # Security
-   BOT_TOKEN=your_telegram_bot_token
-
-   # App Configuration
-   NEXT_PUBLIC_APP_URL=https://your-domain.com
-   ```
+   Create a `.env` file in the root directory and copy the .env.example to it
 
 4. **Database Setup**:
-   The application will attempt to create necessary tables on the first run, or you can manually execute the schema:
-
-   ```sql
-   CREATE TABLE users (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       user_id BIGINT NOT NULL UNIQUE,
-       first_name VARCHAR(255),
-       username VARCHAR(255),
-       language VARCHAR(10) DEFAULT 'en',
-       theme VARCHAR(20) DEFAULT 'auto',
-       locked_until TIMESTAMP NULL,
-       lock_reason VARCHAR(50),
-       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-   );
-
-   CREATE TABLE accounts (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       user_id BIGINT NOT NULL,
-       service_name VARCHAR(255) NOT NULL,
-       secret VARCHAR(255) NOT NULL,
-       issuer VARCHAR(255),
-       slug VARCHAR(255),
-       hex VARCHAR(50),
-       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-       FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-   );
-   ```
+   manually create the tables using the sql from `db.sql` on this repo
 
 5. **Run Development Server**:
    ```bash
    npm run dev
    ```
    Open `http://localhost:3000` to verify it's running. Note that Mini App specific features (like `webApp` context) will only work when opened inside Telegram.
+   You can use [ngrok](https://ngrok.com/) to get https url of your localhost
 
 ## 📱 Telegram Configuration
 
