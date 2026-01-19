@@ -3,6 +3,8 @@
 import Script from 'next/script';
 import { createContext, useContext, useEffect, useState } from 'react';
 
+import TelegramAnalytics from '@telegram-apps/analytics';
+
 const TelegramContext = createContext<any>(null);
 
 export const useTelegram = () => useContext(TelegramContext);
@@ -12,6 +14,21 @@ export function TelegramProvider({ children }: { children: React.ReactNode }) {
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
+        // Initialize Analytics
+        const token = process.env.NEXT_PUBLIC_ANALYTICS_TOKEN;
+        const appName = process.env.NEXT_PUBLIC_ANALYTICS_APP_NAME || 'WhatOTP';
+
+        if (token && token !== 'YOUR_TOKEN') {
+            try {
+                TelegramAnalytics.init({
+                    token: token,
+                    appName: appName,
+                });
+            } catch (e) {
+                console.error("Analytics init failed:", e);
+            }
+        }
+
         const initWebApp = () => {
             if (typeof window !== 'undefined' && (window as any).Telegram?.WebApp) {
                 const app = (window as any).Telegram.WebApp;
