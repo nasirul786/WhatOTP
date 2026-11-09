@@ -27,7 +27,7 @@ export default function Drawer({ isOpen, onClose, children }: DrawerProps) {
                     exit={{ y: '100%' }}
                     transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                 >
-                    <div className="overflow-y-auto overscroll-contain h-full">
+                    <div className="safe-area overflow-y-auto overscroll-contain h-full">
                         {children}
                     </div>
                 </motion.div>

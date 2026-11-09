@@ -1,91 +1,156 @@
-# WhatOTP - Telegram 2FA Mini App
+# WhatOTP
 
-**WhatOTP** is a secure, elegant, and feature-rich Two-Factor Authentication (2FA) authenticator built specifically as a Telegram Mini App. It allows users to protect their accounts with Time-based One-Time Passwords (TOTP) directly within Telegram, backed by secure server-side encryption and biometric authentication.
+**A two-factor authenticator that lives inside Telegram.**
 
-## ✨ Features
+WhatOTP is a Telegram Mini App for TOTP codes (the 6-digit codes used by Google, GitHub, Discord, Binance and almost every other service). Your codes are tied to your Telegram account, so they're there on every device where you use Telegram — no extra app to install. It looks and feels like a native iPhone app, in light or dark mode, in 11 languages.
 
-- **🔐 Secure Storage**: User secrets are encrypted and stored securely on private servers.
-- **🛡️ Biometric & Passcode Protection**: Integrated with Telegram's Biometric Manager for FaceID/TouchID support and a fallback 6-digit passcode.
-- **☁️ Cloud Sync (Telegram ID)**: Accounts are tied to your Telegram user ID, allowing access across devices where you use Telegram.
-- **📥 Import / 📤 Export**: 
-  - Scan QR codes to add accounts.
-  - Export accounts via QR code or file to migrate to other apps.
-- **🌍 Multi-Language Support**:
-  Just add your language translations file into lib/locales with language_code.json file name and add its lottie file to the public/lotties/flags/language_code.json to add enw language.
-  - 🇺🇸 English
-  - 🇮🇳 Hindi (हिन्दी)
-  - 🇧🇩 Bengali (বাংলা)
-  - 🇮🇩 Indonesian (Bahasa Indonesia)
-  - And many more
-- **🎨 Modern UI**:
-  - Beautiful dark/light mode support.
-  - Smooth animations using Lottie and Framer Motion.
-  - Brand icons support via Simple Icons.
-- **🤖 Bot Integration**: A companion bot (`/start`) that provides a welcome guide and quick app launch.
+Open it: **[@what_otp_bot](https://t.me/what_otp_bot)**
 
-## 🛠️ Tech Stack
+---
 
-- **Framework**: [Next.js 14+](https://nextjs.org/) (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS, Lucide React (Icons)
-- **Animations**: Framer Motion, Lottie React
-- **Database**: MySQL (via `mysql2`)
-- **Cryptography**: `otpauth` (TOTP generation), `bcryptjs` (Hashing), `crypto` (Encryption)
-- **Deployment**: Vercel (recommended)
+## Features
 
-## 🚀 Getting Started
+### Codes
+- **Live codes** with a countdown ring that turns red in the last 5 seconds.
+- **Tap to copy**, with a haptic tick and a "Copied" toast.
+- **Swipe left** on a code for Edit and Delete, iOS-style.
+- **Search** across services and issuers.
+- **Add by QR scan** (Telegram's native scanner) or by typing the setup key — the form shows the **real code live** as you type, so you know the key works before saving.
+- **Brand icons** for 3,000+ services (via [Simple Icons](https://simpleicons.org)) and a colour for each entry.
 
-### Prerequisites
+### Security
+- **Biometric unlock** using Telegram's BiometricManager (Face ID / fingerprint), prompted automatically on open.
+- **6-digit passcode** as an alternative, with a keypad that also works with your keyboard.
+- **Verified email** for account recovery.
+- **Recovery with a 24-hour safety window:** removing authentication or deleting your account locks it for 24 hours, during which it can be cancelled.
+- **Deletion warnings** by email and Telegram message, with a link to cancel if it wasn't you.
 
-- Node.js 18+
-- MySQL Database
-- Telegram Bot Token (from @BotFather)
+### Transfer
+- **Export** selected accounts as a Google Authenticator migration QR.
+- **Import** from Google Authenticator by scanning its export QR.
 
-### Installation
+### Experience
+- **iOS-style design** throughout: large titles, grouped lists, action sheets, pull-down menus, push transitions and blurred backdrops.
+- **Fullscreen on phones**, respecting the notch and Telegram's own controls.
+- **Haptic feedback** everywhere (can be turned off in Settings).
+- **Light, dark or system theme**, synced to your account.
+- **11 languages:** English, বাংলা, Deutsch, Español, Français, हिंदी, Bahasa Indonesia, Italiano, Português, Русский, 中文. [Request another →](https://github.com/nasirul786/WhatOTP/issues/new?template=language_request.yml)
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/nasirul786/WhatOTP.git
-   cd WhatOTP
-   ```
+### Support the project
+- **Donate in USDT** on Tron, BNB Smart Chain, TON, Solana, Polygon or Ethereum (via OxaPay), directly in the app.
+- **Donation wall** showing supporters (or "Anonymous", if they prefer).
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+---
 
-3. **Environment Setup**:
-   Create a `.env` file in the root directory and copy the .env.example to it
+## Tech stack
 
-4. **Database Setup**:
-   manually create the tables using the sql from `db.sql` on this repo
+| | |
+|---|---|
+| Framework | [Next.js 16](https://nextjs.org) (App Router), React 19, TypeScript |
+| Styling | Tailwind CSS 4, Framer Motion, Lottie |
+| Database | MySQL (`mysql2`) |
+| TOTP | [`otpauth`](https://github.com/hectorm/otpauth) |
+| Telegram | [Telegram Mini Apps](https://core.telegram.org/bots/webapps) (`telegram-web-app.js`), Bot API 8.0+ |
+| Email | Nodemailer (SMTP) |
+| Payments | [OxaPay](https://oxapay.com) white-label USDT payments |
 
-5. **Run Development Server**:
-   ```bash
-   npm run dev
-   ```
-   Open `http://localhost:3000` to verify it's running. Note that Mini App specific features (like `webApp` context) will only work when opened inside Telegram.
-   You can use [ngrok](https://ngrok.com/) to get https url of your localhost
+---
 
-## 📱 Telegram Configuration
+## Self-hosting
 
-1. Open **@BotFather** on Telegram.
-2. Create a new command `/newapp`.
-3. Select your bot.
-4. Enter the title (e.g., "WhatOTP") and short description.
-5. Provide the HTTPS URL of your deployed application (e.g., `https://your-project.vercel.app`).
-6. Used the generated Direct Link to access the Mini App.
+### Requirements
+- Node.js 20+
+- MySQL 8 (or compatible)
+- A Telegram bot token from [@BotFather](https://t.me/BotFather)
+- An HTTPS URL for the app (in development, [ngrok](https://ngrok.com) works)
+- Optional: SMTP credentials (email recovery and deletion notices) and an OxaPay merchant key (donations)
 
-## 📄 Privacy Policy
+### 1. Install
 
-We prioritize user privacy. Access the privacy policy at `/privacy`. 
-- **Data**: We store encrypted TOTP secrets linked to your Telegram ID.
-- **Deletion**: Users can permanently delete their account and all associated data via the app settings (subject to a 24-hour security period).
+```bash
+git clone https://github.com/nasirul786/WhatOTP.git
+cd WhatOTP
+npm install
+```
 
-## 🤝 Contributing
+### 2. Configure
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Copy `env.example` to `.env` and fill it in:
 
-## 📄 License
+| Variable | Purpose |
+|---|---|
+| `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASS`, `DB_NAME` | MySQL connection |
+| `BOT_TOKEN` | Your bot's token; also used to verify Telegram login data |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Outgoing email (verification codes, deletion notices) |
+| `BOT_APP_URL` | Link that opens your Mini App, used in notifications (e.g. `https://t.me/your_bot?startapp`) |
+| `OXAPAY_MERCHANT_API_KEY` | OxaPay merchant key, only needed for donations |
 
-This project is licensed under the MIT License.
+### 3. Create the database
+
+Run [`db.sql`](db.sql) against your database. The `donations` table is also created automatically on first use.
+
+All dates are stored in UTC.
+
+### 4. Run
+
+```bash
+npm run dev
+```
+
+The app only works fully inside Telegram (it needs Telegram's login data). Expose your dev server over HTTPS, e.g. `ngrok http 3000`, and add the ngrok hostname to `allowedDevOrigins` in [`next.config.ts`](next.config.ts).
+
+For production:
+
+```bash
+npm run build
+npm start
+```
+
+### 5. Connect the bot
+
+1. In [@BotFather](https://t.me/BotFather), send `/newapp`, choose your bot, and give it your app's HTTPS URL.
+2. Set your bot's webhook to `https://<your-domain>/api/bot` so `/start` sends the welcome message.
+3. For donations, make sure the app is reachable over HTTPS: OxaPay sends payment confirmations to `/api/donate/callback`.
+
+---
+
+## Project structure
+
+```
+app/
+  page.tsx              Main screen: unlock, codes list, settings (all client-side)
+  api/                  Auth, accounts, email, passcode, biometrics, donations, bot webhook
+components/             UI: HomeView, SettingsView, AccountRow, sheets, drawers, pickers
+lib/
+  locales/*.json        Translations (one file per language)
+  haptics.ts            Haptic feedback (respects the user's setting)
+  useTotp.ts            Live TOTP code hook
+  oxapay.ts             OxaPay client
+public/lotties/         Animations, including flags/<code>.json for each language
+db.sql                  Database schema
+```
+
+### Adding a language
+
+1. Copy `lib/locales/en.json` to `lib/locales/<code>.json` (use the Telegram / ISO 639-1 code) and translate the values.
+2. Add an animated flag at `public/lotties/flags/<code>.json`.
+
+It appears in the language list automatically.
+
+---
+
+## Privacy
+
+WhatOTP stores your authenticator entries (service, issuer, secret key, icon and colour) on the server, linked to your Telegram user ID, so you can reach them from any device. If you self-host, that data is in **your** database. Read the full [privacy policy](app/privacy/page.tsx) (served at `/privacy`).
+
+You can delete your account and all its data from the app at any time, after a 24-hour safety window.
+
+---
+
+## Contributing
+
+Issues and pull requests are welcome. To ask for a new language, use the [language request form](https://github.com/nasirul786/WhatOTP/issues/new?template=language_request.yml).
+
+## License
+
+MIT

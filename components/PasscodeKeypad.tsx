@@ -1,63 +1,54 @@
 import React from 'react';
 import { Delete } from 'lucide-react';
-import { useTelegram } from '@/components/TelegramProvider';
+import { useTranslation } from '@/lib/useTranslation';
 
 interface PasscodeKeypadProps {
     onPress: (digit: string) => void;
     onDelete: () => void;
-    biometricAuth?: () => void;
+    onSubmit?: () => void;
+    submitDisabled?: boolean;
 }
 
-export default function PasscodeKeypad({ onPress, onDelete, biometricAuth }: PasscodeKeypadProps) {
-    const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    const webApp = useTelegram();
+const KEY = 'h-14 rounded-full flex items-center justify-center select-none transition-all active:scale-95 disabled:opacity-40 disabled:active:scale-100';
 
-    const handlePress = (k: string) => {
-        webApp?.HapticFeedback.impactOccurred('light');
-        onPress(k);
-    };
+/** Numeric keypad. Haptics come from the app-wide button handler (see lib/haptics). */
+export default function PasscodeKeypad({ onPress, onDelete, onSubmit, submitDisabled }: PasscodeKeypadProps) {
+    const { t } = useTranslation();
 
-    const handleDelete = () => {
-        webApp?.HapticFeedback.impactOccurred('medium');
-        onDelete();
-    };
+    const digit = (k: string) => (
+        <button
+            key={k}
+            data-haptic="light"
+            className={`${KEY} text-3xl font-normal bg-[var(--surface)] active:bg-[var(--input-bg)]`}
+            onClick={() => onPress(k)}
+        >
+            {k}
+        </button>
+    );
 
     return (
-        <div className="w-full max-w-xs mx-auto">
-            <div className="grid grid-cols-3 gap-x-8 gap-y-6">
-                {keys.map((k) => (
-                    <button
-                        key={k}
-                        className="h-16 w-16 rounded-2xl text-2xl font-medium bg-[var(--surface)] hover:bg-[var(--surface)]/80 active:bg-[var(--surface)]/60 transition-colors flex items-center justify-center select-none shadow-sm"
-                        onClick={() => handlePress(k)}
-                    >
-                        {k}
-                    </button>
-                ))}
+        <div className="w-full max-w-sm mx-auto grid grid-cols-3 gap-2">
+            {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map(digit)}
 
-                {/* Empty bottom left or Biometric */}
-                <div className="flex items-center justify-center">
-                    {/* Placeholder or biometric button could go here */}
-                </div>
+            <button
+                data-haptic="medium"
+                className={`${KEY} bg-[var(--primary)]/20 text-[var(--foreground)]`}
+                onClick={onDelete}
+                aria-label="Delete"
+            >
+                <Delete size={28} />
+            </button>
 
-                <button
-                    className="h-16 w-16 rounded-2xl text-2xl font-medium bg-[var(--surface)] hover:bg-[var(--surface)]/80 active:bg-[var(--surface)]/60 transition-colors flex items-center justify-center select-none shadow-sm"
-                    onClick={() => handlePress('0')}
-                >
-                    0
-                </button>
+            {digit('0')}
 
-                <button
-                    className="h-16 w-16 rounded-2xl text-xl bg-transparent hover:bg-[var(--surface)] active:bg-[var(--surface)]/80 transition-colors flex items-center justify-center text-[var(--muted)]"
-                    onPointerDown={(e) => {
-                        e.preventDefault();
-                        handleDelete();
-                    }}
-                    onClick={(e) => e.preventDefault()}
-                >
-                    <Delete size={28} />
-                </button>
-            </div>
+            <button
+                data-haptic="medium"
+                className={`${KEY} bg-[var(--primary)] text-[var(--primary-fg)] text-lg font-semibold`}
+                onClick={() => onSubmit?.()}
+                disabled={submitDisabled}
+            >
+                {t.submit || 'Submit'}
+            </button>
         </div>
     );
 }

@@ -65,4 +65,34 @@ CREATE TABLE `telegram_biometrics` (
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ----------------------------
+-- donations (OxaPay USDT white-label payments; created automatically by lib/donationsDb.ts too)
+-- ----------------------------
+CREATE TABLE IF NOT EXISTS `donations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` varchar(64) NOT NULL,
+  `track_id` varchar(64) DEFAULT NULL,
+  `user_id` bigint unsigned DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `photo_url` text,
+  `is_anonymous` tinyint(1) NOT NULL DEFAULT '0',
+  `amount` decimal(18,6) NOT NULL,
+  `network` varchar(64) NOT NULL,
+  `status` varchar(32) NOT NULL DEFAULT 'waiting',
+  `pay_amount` decimal(24,8) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `memo` varchar(255) DEFAULT NULL,
+  `qr_code` text,
+  `expired_at` int unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `paid_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_order_id` (`order_id`),
+  UNIQUE KEY `uq_track_id` (`track_id`),
+  KEY `idx_status_paid` (`status`,`paid_at`),
+  KEY `idx_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 SET FOREIGN_KEY_CHECKS = 1;
