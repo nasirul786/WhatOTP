@@ -1,0 +1,76 @@
+name: 🌐 Language request
+description: Ask for WhatOTP to be translated into a new language
+title: "[Language] "
+labels: ["language request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping make WhatOTP available to more people! Tell us which language you'd like to see.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Request type
+      options:
+        - New language
+        - Improve an existing translation
+        - Missing or wrong text in a language
+    validations:
+      required: true
+
+  - type: input
+    id: language_name
+    attributes:
+      label: Language name (in English)
+      placeholder: e.g. Turkish
+    validations:
+      required: true
+
+  - type: input
+    id: native_name
+    attributes:
+      label: Language name (in that language)
+      placeholder: e.g. Türkçe
+    validations:
+      required: false
+
+  - type: input
+    id: language_code
+    attributes:
+      label: Language code (if you know it)
+      description: ISO 639-1 code, as used by Telegram.
+      placeholder: e.g. tr
+    validations:
+      required: false
+
+  - type: dropdown
+    id: region
+    attributes:
+      label: Writing direction
+      options:
+        - Left to right
+        - Right to left (e.g. Arabic, Persian, Hebrew, Urdu)
+        - Not sure
+    validations:
+      required: false
+
+  - type: dropdown
+    id: help
+    attributes:
+      label: Can you help translate?
+      description: Native speakers make the best translations.
+      options:
+        - Yes, I can translate it
+        - Yes, I can review a translation
+        - No, just requesting
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Wrong strings you've noticed, regional variants, or other notes.
+    validations:
+      required: false
