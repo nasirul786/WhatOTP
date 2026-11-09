@@ -187,6 +187,9 @@
     "delete_entry": "এন্ট্রি মুছুন",
     "language_hint": "WhatOTP কোন ভাষায় চলবে তা বেছে নিন। পরে সেটিংসে পরিবর্তন করতে পারবেন।",
     "request_language": "নতুন ভাষার অনুরোধ",
-    "request_language_hint": "আপনার ভাষা নেই? GitHub-এ অনুরোধ করুন — অথবা WhatOTP অনুবাদে সাহায্য করুন।"
+    "request_language_hint": "আপনার ভাষা নেই? GitHub-এ অনুরোধ করুন — অথবা WhatOTP অনুবাদে সাহায্য করুন।",
+    "telegram_only_title": "টেলিগ্রামে খুলুন",
+    "telegram_only_msg": "WhatOTP একটি টেলিগ্রাম মিনি অ্যাপ এবং শুধু টেলিগ্রামের ভেতরেই কাজ করে। আপনার কোড দেখতে সেখানে খুলুন।",
+    "open_in_telegram": "টেলিগ্রামে খুলুন"
   }
 }

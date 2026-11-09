@@ -13,3 +13,7 @@ export function languageRequestUrl(languageName?: string) {
     }
     return `${GITHUB_URL}/issues/new?${params}`;
 }
+
+export const BOT_USERNAME = 'what_otp_bot';
+/** Opens the bot's Mini App inside Telegram. */
+export const MINI_APP_URL = `https://t.me/${BOT_USERNAME}?startapp`;

@@ -2,6 +2,7 @@
   "name": "WhatOTP",
   "version": "2.2.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

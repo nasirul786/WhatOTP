@@ -187,6 +187,9 @@
     "delete_entry": "Удалить запись",
     "language_hint": "Выберите язык WhatOTP. Его можно изменить позже в настройках.",
     "request_language": "Запросить язык",
-    "request_language_hint": "Нет вашего языка? Попросите на GitHub — или помогите перевести WhatOTP."
+    "request_language_hint": "Нет вашего языка? Попросите на GitHub — или помогите перевести WhatOTP.",
+    "telegram_only_title": "Откройте в Telegram",
+    "telegram_only_msg": "WhatOTP — это мини-приложение Telegram, оно работает только внутри Telegram. Откройте его там, чтобы увидеть коды.",
+    "open_in_telegram": "Открыть в Telegram"
   }
 }

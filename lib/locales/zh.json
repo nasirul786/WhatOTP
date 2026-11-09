@@ -187,6 +187,9 @@
     "delete_entry": "删除条目",
     "language_hint": "选择 WhatOTP 使用的语言，之后可在设置中更改。",
     "request_language": "请求新语言",
-    "request_language_hint": "没有您的语言？在 GitHub 上提出请求，或帮助翻译 WhatOTP。"
+    "request_language_hint": "没有您的语言？在 GitHub 上提出请求，或帮助翻译 WhatOTP。",
+    "telegram_only_title": "在 Telegram 中打开",
+    "telegram_only_msg": "WhatOTP 是 Telegram 小程序，只能在 Telegram 内使用。请在 Telegram 中打开以查看您的验证码。",
+    "open_in_telegram": "在 Telegram 中打开"
   }
 }

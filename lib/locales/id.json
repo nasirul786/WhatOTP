@@ -187,6 +187,9 @@
     "delete_entry": "Hapus Entri",
     "language_hint": "Pilih bahasa untuk WhatOTP. Anda bisa mengubahnya nanti di Pengaturan.",
     "request_language": "Minta Bahasa",
-    "request_language_hint": "Bahasa Anda tidak ada? Minta di GitHub — atau bantu terjemahkan WhatOTP."
+    "request_language_hint": "Bahasa Anda tidak ada? Minta di GitHub — atau bantu terjemahkan WhatOTP.",
+    "telegram_only_title": "Buka di Telegram",
+    "telegram_only_msg": "WhatOTP adalah Mini App Telegram dan hanya berfungsi di dalam Telegram. Buka di sana untuk melihat kode Anda.",
+    "open_in_telegram": "Buka di Telegram"
   }
 }

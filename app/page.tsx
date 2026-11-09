@@ -15,6 +15,7 @@ import PinPad from '@/components/PinPad';
 import SettingsView, { SecurityState } from '@/components/SettingsView';
 import VerificationScreen from '@/components/VerificationScreen';
 import LockedScreen from '@/components/LockedScreen';
+import TelegramOnlyScreen from '@/components/TelegramOnlyScreen';
 import { useTranslation } from '@/lib/useTranslation';
 import { api, postAuth } from '@/lib/api';
 import { confirmPopup } from '@/lib/telegram';
@@ -421,6 +422,8 @@ export default function Home() {
 
   // --- Render ---
   if (!webApp) return <div className="flex items-center justify-center min-h-app">{t.loading}</div>;
+  // Telegram's script also loads in a normal browser, but only a real Mini App launch has login data.
+  if (!webApp.initData) return <TelegramOnlyScreen />;
   if (loading) return <div className="flex items-center justify-center min-h-app">{t.verifying}</div>;
 
   if (lockedUntil && lockedUntil > Date.now()) {

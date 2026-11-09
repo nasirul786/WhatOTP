@@ -187,6 +187,9 @@
     "delete_entry": "Eliminar entrada",
     "language_hint": "Elige el idioma de WhatOTP. Puedes cambiarlo más tarde en Ajustes.",
     "request_language": "Solicitar un idioma",
-    "request_language_hint": "¿No ves el tuyo? Pídelo en GitHub o ayuda a traducir WhatOTP."
+    "request_language_hint": "¿No ves el tuyo? Pídelo en GitHub o ayuda a traducir WhatOTP.",
+    "telegram_only_title": "Abrir en Telegram",
+    "telegram_only_msg": "WhatOTP es una Mini App de Telegram y solo funciona dentro de Telegram. Ábrela allí para ver tus códigos.",
+    "open_in_telegram": "Abrir en Telegram"
   }
 }

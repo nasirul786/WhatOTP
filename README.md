@@ -153,4 +153,4 @@ Issues and pull requests are welcome. To ask for a new language, use the [langua
 
 ## License
 
-MIT
+[MIT](LICENSE)

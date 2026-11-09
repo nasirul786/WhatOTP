@@ -187,6 +187,9 @@
     "delete_entry": "प्रविष्टि हटाएं",
     "language_hint": "WhatOTP की भाषा चुनें। आप इसे बाद में सेटिंग्स में बदल सकते हैं।",
     "request_language": "नई भाषा का अनुरोध",
-    "request_language_hint": "आपकी भाषा नहीं है? GitHub पर अनुरोध करें — या WhatOTP के अनुवाद में मदद करें।"
+    "request_language_hint": "आपकी भाषा नहीं है? GitHub पर अनुरोध करें — या WhatOTP के अनुवाद में मदद करें।",
+    "telegram_only_title": "टेलीग्राम में खोलें",
+    "telegram_only_msg": "WhatOTP एक टेलीग्राम मिनी ऐप है और केवल टेलीग्राम के अंदर काम करता है। अपने कोड देखने के लिए इसे वहाँ खोलें।",
+    "open_in_telegram": "टेलीग्राम में खोलें"
   }
 }
